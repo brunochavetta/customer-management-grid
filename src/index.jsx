@@ -38,5 +38,13 @@ app.post("/customer", (req, res) => {
     }; 
     customers.push(newCustomer); 
     res.status(201).json(newCustomer)
-})
+}); 
+
+// PUT /customer/:id (actualizar cliente)
+app.put("/customer/:id", (req, res) => {
+    let customers = readData(); 
+    customers = customers.filter((c) => c.id !== parseInt(req.params.id)); 
+    writeData(customers); 
+    res.status(204).send(); 
+}); 
 
