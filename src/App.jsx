@@ -8,11 +8,13 @@ function App() {
     const [sortField, setSortField] = useState(null);
     const [sortDirection, setSortDirection] = useState(null);
     const [filters, setFilters] = useState({
+        id: '',
         first_name: '',
         last_name: '',
         email: '',
         gender: '',
         country: '',
+        ip_address: '',
     });
 
     const handleSort = (field) => {
@@ -68,7 +70,7 @@ function App() {
             <div className="mx-auto max-w-7xl">
                 <div className="bg-white rounded-lg shadow-md overflow-hidden">
                     {/* Filters */}
-                    <div className="grid grid-cols-5 gap-4 p-4 border-b border-gray-200">
+                    <div className="grid grid-cols-7 gap-4 p-4 border-b border-gray-200">
                         {Object.keys(filters).map((field) => (
                             <input
                                 key={field}
@@ -103,11 +105,13 @@ function App() {
                             <tbody className="bg-white divide-y divide-gray-200">
                                 {paginatedData.map((item) => (
                                     <tr key={item.id} className="hover:bg-gray-50">
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.id}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.first_name}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.last_name}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.email}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.gender}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.country}</td>
+                                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{item.ip_address}</td>
                                     </tr>
                                 ))}
                             </tbody>
