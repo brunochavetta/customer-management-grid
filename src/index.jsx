@@ -42,6 +42,10 @@ app.post("/customer", (req, res) => {
 
 // PUT /customer/:id (actualizar cliente)
 app.put("/customer/:id", (req, res) => {
+     
+}); 
+
+app.delete("/customer/:id", (req, res) => {
     let customers = readData(); 
     customers = customers.filter((c) => c.id !== parseInt(req.params.id)); 
     writeData(customers); 
