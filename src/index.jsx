@@ -28,4 +28,15 @@ app.get("/customer/:id", (req, res) => {
     const customer = customers.find((c) => c.id === parseInt(req.params.id)); 
     if(!customer) return res.status(404).send("Customer not found."); 
     res.json(customer); 
+}); 
+
+// POST /customer (crear un nuevo cliente)
+app.post("/customer", (req, res) => {
+    const newCustomer = {
+        id: cuustomers.length + 1, 
+        ...req.body
+    }; 
+    customers.push(newCustomer); 
+    res.status(201).json(newCustomer)
 })
+
