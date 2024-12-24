@@ -42,7 +42,12 @@ app.post("/customer", (req, res) => {
 
 // PUT /customer/:id (actualizar cliente)
 app.put("/customer/:id", (req, res) => {
-     
+    const customers = readData();
+    const customerIndex = customers.findIndex((c) => c.id === parseInt(req.params.id));
+    if (customerIndex === -1) return res.status(404).send("Customer not found.");
+    customers[customerIndex] = { ...customers[customerIndex], ...req.body };
+    writeData(customers);
+    res.json(customers[customerIndex]);
 }); 
 
 app.delete("/customer/:id", (req, res) => {
