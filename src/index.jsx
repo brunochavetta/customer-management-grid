@@ -21,3 +21,11 @@ app.get("/customer", (req, res) => {
     const customer = readData(); 
     res.json(customer); 
 });
+
+// GET /customer/:id (obtener cliente por id)
+app.get("/customer/:id", (req, res) => {
+    const customers = readData(); 
+    const customer = customers.find((c) => c.id === parseInt(req.params.id)); 
+    if(!customer) return res.status(404).send("Customer not found."); 
+    res.json(customer); 
+})
